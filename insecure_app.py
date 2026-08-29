@@ -1,9 +1,13 @@
-import urllib.request
+import sqlite3
 
-def fetch_data():
-    # Insecure HTTP request (CodeQL should flag non-HTTPS traffic)
-    url = "http://example.com/api/data"
-    response = urllib.request.urlopen(url)
-    return response.read()
+def get_user_data(user_input):
+    conn = sqlite3.connect("database.db")
+    cursor = conn.cursor()
+    # Insecure SQL Query (Tainted User Input)
+    query = "SELECT * FROM users WHERE username = '" + user_input + "'"
+    cursor.execute(query)
+    return cursor.fetchall()
 
-fetch_data()
+user_input = "' OR '1'='1"
+get_user_data(
+user_input)
