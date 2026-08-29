@@ -9,5 +9,4 @@ def get_user_data(user_input):
     return cursor.fetchall()
 
 user_input = "' OR '1'='1"
-get_user_data(
-user_input)
+get_user_data(user_input)
