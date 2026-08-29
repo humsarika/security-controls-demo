@@ -12,6 +12,7 @@ def get_user(user_id):
     cursor.execute("SELECT * FROM users WHERE id = '%s'" % user_id)
     return cursor.fetchall()
 
+
 # Tainted Inputs
 command_input = "127.0.0.1; cat /etc/passwd"
 user_id_input = "1' OR '1'='1"
